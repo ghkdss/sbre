@@ -1,7 +1,11 @@
 package com.example.sbre.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,6 +29,23 @@ public class BoardController {
 		
 		return new ResponseEntity<>("게시글 등록 성공", HttpStatus.OK);
 	}
+	
+	
+	@GetMapping("/board")
+	public ResponseEntity<?> getBoardList() {
+		List<Board> boardList = boardService.getBoardList();
+		
+		return new ResponseEntity<>(boardList, HttpStatus.OK);
+	}
+	
+	
+	@GetMapping("/board/{id}")
+	public ResponseEntity<?> getBoard(@PathVariable Integer id) {
+		Board board = boardService.getBoard(id);
+		
+		return new ResponseEntity<>(board, HttpStatus.OK);
+	}
+	
 }
 
 

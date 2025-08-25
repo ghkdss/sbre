@@ -1,11 +1,11 @@
 package com.example.sbre.service;
 
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.example.sbre.domain.Board;
-import com.example.sbre.domain.BoardDTO;
-import com.example.sbre.domain.Member;
 import com.example.sbre.repository.BoardRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -20,6 +20,16 @@ public class BoardService {
 		
 		boardRepository.save(board);
 		
+	}
+	
+	public List<Board> getBoardList() {
+		
+		return boardRepository.findAllByOrderByIdDesc();
+	}
+	
+	public Board getBoard(Integer id) {
+		
+		return boardRepository.findById(id).get();
 	}
 	
 }
